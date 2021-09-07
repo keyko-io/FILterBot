@@ -9,7 +9,7 @@ workstreams, and it is configurable for different teams.
 FILterBot is highly configurable. The configuration is stored as a YAML file in
 this repository.
 
-[:memo: Edit Config](edit/main/config.yml)
+[:memo: Edit Config](../../edit/main/config.yml)
 
 ### `checks`
 
