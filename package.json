@@ -8,7 +8,7 @@
   "homepage": "https://github.com/galen-mcandrew/FILterBot",
   "scripts": {
     "build": "tsc",
-    "start": "probot run ./lib/index.js"
+    "start": "node ./lib/index.js"
   },
   "dependencies": {
     "@breejs/later": "^4.0.2",
