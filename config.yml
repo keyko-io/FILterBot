@@ -3,9 +3,19 @@ checks:
     search:
       q: "repo:filecoin-project/filecoin-plus-large-datasets is:issue is:open label:status:needsDiligence"
       sort: created
-    channel: "#fil-plus-notaries"
+    channel: "#priv-keyko-filplus-app"
     message: |
-      There are {{items.length}} issues that need diligence:
+      There are {{items.length}} large datasets issues that need diligence:
+
+      {{#each items}}• *<{{this.html_url}}|{{this.title}} (#{{this.number}})>*
+      {{/each}}
+  - schedule: on wednesday at 9:00am
+    search:
+      q: "repo:filecoin-project/filecoin-plus-client-onboarding is:issue is:open label:state:Verifying"
+      sort: created
+    channel: "#priv-keyko-filplus-app"
+    message: |
+      There are {{items.length}} client issues that need diligence:
 
       {{#each items}}• *<{{this.html_url}}|{{this.title}} (#{{this.number}})>*
       {{/each}}

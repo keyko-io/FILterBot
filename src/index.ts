@@ -1,6 +1,5 @@
 import * as path from "path"
 import * as fs from "fs"
-import later from "@breejs/later"
 import { ProbotOctokit } from "probot"
 import { Endpoints } from "@octokit/types"
 import yaml from "js-yaml"
@@ -28,6 +27,7 @@ async function runCheck(check: Check) {
   const items = await octokit.paginate(octokit.search.issuesAndPullRequests, check.search)
   if (items.length) {
     const textTemplate = Handlebars.compile(check.message)
+    console.log(textTemplate({items}))
     await slack.chat.postMessage({
       channel: check.channel,
       text: textTemplate({ items }),
@@ -38,13 +38,7 @@ async function runCheck(check: Check) {
 }
 
 config.checks.forEach(check => {
-  console.log(`Bot will run ${check.schedule}`)
-  later.setInterval(
-    () => {
       runCheck(check).catch(e => {
         console.error('Error while running check:', e)
       })
-    },
-    later.parse.text(check.schedule)
-  )
 })
