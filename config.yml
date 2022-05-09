@@ -13,6 +13,26 @@ checks:
     search:
       q: "repo:filecoin-project/filecoin-plus-client-onboarding is:issue is:open label:state:Verifying"
       sort: created
+    channel: "#fil-plus-notaries"
+    message: |
+      There are {{items.length}} client issues that need diligence:
+
+      {{#each items}}• *<{{this.html_url}}|{{this.title}} (#{{this.number}}) --> Assigned to: @{{this.assignee.login}}>*
+      {{/each}}
+  - schedule: on wednesday at 9:00am
+    search:
+      q: "repo:filecoin-project/filecoin-plus-client-onboarding is:issue is:open label:state:Verifying"
+      sort: created
+    channel: "#priv-keyko-filplus-app"
+    message: |
+      There are {{items.length}} client issues that need diligence:
+
+      {{#each items}}• *<{{this.html_url}}|{{this.title}} (#{{this.number}}) --> Assigned to: @{{this.assignee.login}}>*
+      {{/each}}
+  - schedule: on wednesday at 9:00am
+    search:
+      q: "repo:filecoin-project/filecoin-plus-large-datasets is:issue is:open label:bot:readyToSign"
+      sort: created
     channel: "#priv-keyko-filplus-app"
     message: |
       There are {{items.length}} client issues that need diligence:
