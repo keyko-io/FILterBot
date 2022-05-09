@@ -27,7 +27,7 @@ checks:
     message: |
       There are {{items.length}} client issues that need diligence:
 
-      {{#each items}}• *<{{this.html_url}}|{{this.title}} (#{{this.number}}) --> Assigned to: @{{this.assignee.login}}>*
+      {{#each items}}• *<{{this.html_url}}|{{this.title}} (#{{this.number}})>*
       {{/each}}
   - schedule: on wednesday at 9:00am
     search:
