@@ -1,11 +1,12 @@
 {
-  "name": "filterbot",
+  "name": "@keyko-io/FILterBot",
   "version": "1.0.0",
   "private": true,
   "description": "FILterBot is a Slack bot that periodically checks GitHub repos, tallies issues, and posts messages in Slack channels.",
   "author": "Jeremy Rose <nornagon@nornagon.net>",
   "license": "ISC",
   "homepage": "https://github.com/galen-mcandrew/FILterBot",
+  "repository":"git://github.com/keyko-io/FILterBot.git",
   "scripts": {
     "build": "tsc",
     "start": "node ./lib/index.js"
