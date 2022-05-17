@@ -23,22 +23,51 @@ const config = yaml.load(fs.readFileSync(configPath, 'utf8')) as Config
 
 const octokit = new ProbotOctokit
 
-async function runCheck(check: Check) {
+// async function runCheck() {
+async function runCheck(check: Check, thread_ts: any) {
   const items = await octokit.paginate(octokit.search.issuesAndPullRequests, check.search)
+
+
+
   if (items.length) {
     const textTemplate = Handlebars.compile(check.message)
-    console.log(textTemplate({items}))
+    console.log(textTemplate({ items }))
     await slack.chat.postMessage({
-      channel: check.channel,
+      channel: '#fil-plus-notaries',
+      // channel: check.channel,
       text: textTemplate({ items }),
+      thread_ts,
       unfurl_links: false,
       unfurl_media: false,
     })
   }
+
+
 }
 
-config.checks.forEach(check => {
-      runCheck(check).catch(e => {
-        console.error('Error while running check:', e)
+
+
+const run = async () => {
+  try {
+    const threadMessage = await slack.chat.postMessage({
+      channel: "#fil-plus-notaries",
+      text: 'Heads up! Those in thread are issues that need diligence/signatures',
+      unfurl_links: false,
+      unfurl_media: false,
+    })
+    const thread_ts = threadMessage.ts
+    if (threadMessage.ok) {
+      config.checks.forEach(check => {
+        runCheck(check, thread_ts).catch(e => {
+          console.error('Error while running check:', e)
+        })
       })
-})
+    }
+  } catch (error) {
+    console.log(error)
+  }
+
+  
+}
+
+run()
