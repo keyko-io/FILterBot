@@ -5,7 +5,7 @@ checks:
       sort: created
     channel: "#fil-plus-notaries"
     message: |
-      There are {{items.length}} large dataset apps that need diligence and signatures:
+      There are {{items.length}} large dataset applications that need diligence and signatures:
 
       {{#each items}}• *<{{this.html_url}}|{{this.title}} (#{{this.number}})>*
       {{/each}}
@@ -14,26 +14,6 @@ checks:
       q: "repo:filecoin-project/filecoin-plus-client-onboarding is:issue is:open label:state:Verifying"
       sort: created
     channel: "#fil-plus-notaries"
-    message: |
-      There are {{items.length}} client issues that need diligence:
-
-      {{#each items}}• *<{{this.html_url}}|{{this.title}} (#{{this.number}}) --> Assigned to: @{{this.assignee.login}}>*
-      {{/each}}
-  - schedule: on wednesday at 9:00am
-    search:
-      q: "repo:filecoin-project/filecoin-plus-client-onboarding is:issue is:open label:state:Verifying"
-      sort: created
-    channel: "#priv-keyko-filplus-app"
-    message: |
-      There are {{items.length}} client issues that need diligence:
-
-      {{#each items}}• *<{{this.html_url}}|{{this.title}} (#{{this.number}})>*
-      {{/each}}
-  - schedule: on wednesday at 9:00am
-    search:
-      q: "repo:filecoin-project/filecoin-plus-large-datasets is:issue is:open label:bot:readyToSign"
-      sort: created
-    channel: "#priv-keyko-filplus-app"
     message: |
       There are {{items.length}} client issues that need diligence:
 
